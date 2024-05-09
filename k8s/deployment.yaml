@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: manager
+spec:
+    selector:
+        matchLabels:
+            app: manager
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: manager
+        spec:
+            containers:
+            - name: manager
+              image: manager:0.2
+              imagePullPolicy: Never
+              env:
+                  - name: "SPRING_PROFILES_ACTIVE"
+                    value: "desa"
+              ports:
+              - name: http
+                containerPort: 8080
+
